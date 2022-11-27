@@ -2,8 +2,6 @@
  * Suggested solutions to CPSC1150 PracticeQuestions3
  */
 
-import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 

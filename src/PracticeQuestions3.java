@@ -2,6 +2,12 @@
  * Suggested solutions to CPSC1150 PracticeQuestions3
  */
 
+
+
+
+
+
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -344,7 +350,9 @@ public class PracticeQuestions3 {
         //Question 8
 //        programQ8();
 
+        //Question 9
         programQ9();
+
         //Question 10
 //        programQ10();
     }

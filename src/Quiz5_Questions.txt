@@ -1,0 +1,12 @@
+1. [10] Write a java method which accepts a sentence (String object) and prints
+   the words (separated by space) on different lines. For example if the
+   sentence is "Hello, how are you?" the method should display:
+   Hello.
+   how
+   are
+   you?
+
+2. [3] What signed decimal number is represented by the following binary
+   number (2's complement method is used where needed)? Sixteen bits of
+   memory are used for storing these numbers.
+            1111 1111 1110 0100

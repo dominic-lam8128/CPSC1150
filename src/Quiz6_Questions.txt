@@ -1,0 +1,5 @@
+2.  [5] Write a java method, which accepts a character variable and an array of characters.
+    The method returns the number of times the character appear in the array.
+
+3. [5] Write a java method, which reverses an integer array. The method reverses
+   an integer array, which is passed as a formal parameter.

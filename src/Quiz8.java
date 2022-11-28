@@ -38,17 +38,7 @@ public class Quiz8 {
     }
 
     public static void checkOutput() {
-        char[] arr = {'A','B','C','D','E'};
-        String temp = "";
-        int i,j;
-        for (i = 0; i < arr.length; i++) {
-            temp = "";
-            for (j = arr.length-1; j>i;j--)
-                temp += '-';
-            for (j = arr[i]; j>= arr[0]; j--)
-                temp += (char)j;
-            System.out.println(temp);
-        }
+
     }
 
 

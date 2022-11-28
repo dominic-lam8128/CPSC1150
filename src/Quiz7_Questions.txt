@@ -11,7 +11,7 @@ sorted after the insertion.
     his/her 10 digits phone number. Your program then adds the name and the
     formatted phone number to a file called directory.txt.
     Sample run:
-    Please enter vour name: John Smith
+    Please enter your name: John Smith
     Please enter your 10-digit phone number: 6042836377
     Your program then should add the following line to the directory.txt
     file:

@@ -1,5 +1,6 @@
 /**
  * Suggested solutions to CPSC1150 PracticeQuestions3
+ *
  */
 
 
@@ -92,31 +93,26 @@ public class PracticeQuestions3 {
         }
     }
 
-    public static void programQ3() {
+    public static void programQ3(){
         System.out.println("This program finds the largest increase between the integers you entered.");
         System.out.println("You may stop the program by entering a negative integer.");
         Scanner input = new Scanner(System.in);
         int maxIncrease = 0, previousNum = 0, currentNum = 0;
-        boolean runProgram = true;
-        //To take the first integer.
-        System.out.print("Please enter a positive integer: ");
-        previousNum = input.nextInt();
-        currentNum = previousNum;
-        if (previousNum < 0)
-            runProgram = false;
+        boolean firstInput = true;
 
-        while (runProgram) {
+        while (currentNum >= 0) {
             System.out.print("Please enter a positive integer: ");
-            previousNum = currentNum;
             currentNum = input.nextInt();
-            if (currentNum < 0)
-                break;
-            int currentIncrease = currentNum - previousNum;
-            if (currentIncrease > maxIncrease)
-                maxIncrease = currentIncrease;
-
+            if (firstInput) {
+                previousNum = currentNum;
+                firstInput = false;
+            } else {
+                int currentIncrease = currentNum - previousNum;
+                if (maxIncrease < currentIncrease)
+                    maxIncrease = currentIncrease;
+                previousNum = currentNum;
+            }
         }
-
         System.out.println("Largest increase between the integers you entered: " + maxIncrease);
 
     }
@@ -333,7 +329,7 @@ public class PracticeQuestions3 {
 //        findOutTwosPowerInAnArray(getFibonacciArray(30));
 
         //Question 3
-//        programQ3();
+        programQ3v2();
 
         //Question 4
 //        programQ4();
@@ -351,7 +347,7 @@ public class PracticeQuestions3 {
 //        programQ8();
 
         //Question 9
-        programQ9();
+//        programQ9();
 
         //Question 10
 //        programQ10();

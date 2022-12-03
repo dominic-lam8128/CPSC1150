@@ -1,3 +1,5 @@
+1. [5] Chase output
+
 2.  [5] Write a java method, which accepts a character variable and an array of characters.
     The method returns the number of times the character appear in the array.
 

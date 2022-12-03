@@ -94,19 +94,26 @@ public class PracticeQuestions3 {
     }
 
     public static void programQ3(){
+        //Prompt greeting message
         System.out.println("This program finds the largest increase between the integers you entered.");
         System.out.println("You may stop the program by entering a negative integer.");
+
+        //Setup variables
         Scanner input = new Scanner(System.in);
         int maxIncrease = 0, previousNum = 0, currentNum = 0;
         boolean firstInput = true;
 
+
         while (currentNum >= 0) {
+            //Ask user input new integer
             System.out.print("Please enter a positive integer: ");
             currentNum = input.nextInt();
             if (firstInput) {
+                //This is the first time, don't do comparison and store the first input to previous input
                 previousNum = currentNum;
                 firstInput = false;
             } else {
+                //This is not the first time, do comparison of currentIncrease with maxIncrease
                 int currentIncrease = currentNum - previousNum;
                 if (maxIncrease < currentIncrease)
                     maxIncrease = currentIncrease;
@@ -114,7 +121,6 @@ public class PracticeQuestions3 {
             }
         }
         System.out.println("Largest increase between the integers you entered: " + maxIncrease);
-
     }
 
     public static int findCorrespondingDigitForLetters(char letter) {
@@ -329,7 +335,7 @@ public class PracticeQuestions3 {
 //        findOutTwosPowerInAnArray(getFibonacciArray(30));
 
         //Question 3
-        programQ3v2();
+        programQ3();
 
         //Question 4
 //        programQ4();

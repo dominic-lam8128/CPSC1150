@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Quiz7 {
-    /**
+    /**    Question 1
      *     Write a Java method, which receives a sorted array of integers and a key
      *     (an integer). The array is sorted from the smallest to the largest. The method must
      *     insert the key into the array, in such a way that the numbers in the array will still be
@@ -28,7 +28,7 @@ public class Quiz7 {
     }
 
 
-    /**
+    /**    Question 2
      *     Write a complete java program which asks the user to enter a name and
      *     his/her 10 digits phone number. Your program then adds the name and the
      *     formatted phone number to a file called directory.txt.

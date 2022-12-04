@@ -1,6 +1,5 @@
 /**
  * Suggested solutions to CPSC1150 PracticeQuestions3
- *
  */
 
 
@@ -93,34 +92,33 @@ public class PracticeQuestions3 {
         }
     }
 
-    public static void programQ3(){
-        //Prompt greeting message
+    public static void programQ3() {
         System.out.println("This program finds the largest increase between the integers you entered.");
         System.out.println("You may stop the program by entering a negative integer.");
-
-        //Setup variables
         Scanner input = new Scanner(System.in);
         int maxIncrease = 0, previousNum = 0, currentNum = 0;
-        boolean firstInput = true;
+        boolean runProgram = true;
+        //To take the first integer.
+        System.out.print("Please enter a positive integer: ");
+        previousNum = input.nextInt();
+        currentNum = previousNum;
+        if (previousNum < 0)
+            runProgram = false;
 
-
-        while (currentNum >= 0) {
-            //Ask user input new integer
+        while (runProgram) {
             System.out.print("Please enter a positive integer: ");
+            previousNum = currentNum;
             currentNum = input.nextInt();
-            if (firstInput) {
-                //This is the first time, don't do comparison and store the first input to previous input
-                previousNum = currentNum;
-                firstInput = false;
-            } else {
-                //This is not the first time, do comparison of currentIncrease with maxIncrease
-                int currentIncrease = currentNum - previousNum;
-                if (maxIncrease < currentIncrease)
-                    maxIncrease = currentIncrease;
-                previousNum = currentNum;
-            }
+            if (currentNum < 0)
+                break;
+            int currentIncrease = currentNum - previousNum;
+            if (currentIncrease > maxIncrease)
+                maxIncrease = currentIncrease;
+
         }
+
         System.out.println("Largest increase between the integers you entered: " + maxIncrease);
+
     }
 
     public static void programQ3v2(){
@@ -365,7 +363,7 @@ public class PracticeQuestions3 {
 //        findOutTwosPowerInAnArray(getFibonacciArray(30));
 
         //Question 3
-        programQ3();
+//        programQ3();
 
         //Question 4
 //        programQ4();
@@ -383,7 +381,7 @@ public class PracticeQuestions3 {
 //        programQ8();
 
         //Question 9
-//        programQ9();
+        programQ9();
 
         //Question 10
 //        programQ10();

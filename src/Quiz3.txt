@@ -1,0 +1,23 @@
+1. [6] Write an algorithm using pseudo code to display if a given integer
+number is a prime number. A prime number is a number that is divisible by
+only 1 and by itself.
+
+(Define Terms)
+let number to be the number to be checked if it's prime.
+let isPrime to be the boolean whether the number is prime.
+let divisor to be the divisor.
+
+START
+divisor <- 2
+number <- given number
+isPrime <- True
+
+Repeat while (divisor <= sqrt(number) {
+    if number % divisor = 0 then
+        isPrime <- False
+        break the while loop
+    divisor <- divisor + 1
+}
+
+Display isPrime
+END

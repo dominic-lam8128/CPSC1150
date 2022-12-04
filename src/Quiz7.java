@@ -17,7 +17,11 @@ public class Quiz7 {
      */
 
     public static void insertKey(int[] list, int key) {
+        //The last element will be removed anyway.
         list[list.length-1] = key;
+
+        //Loop thru the array from the end,
+        //for i = n..1, swap list[i-1] and list[i] if list[i-1] > list[i]
         for (int i = list.length-1; i > 0 ; i--) {
             if (list[i-1] > list[i]) {
                 int temp = list[i-1];

@@ -10,3 +10,5 @@
    number (2's complement method is used where needed)? Sixteen bits of
    memory are used for storing these numbers.
             1111 1111 1110 0100
+
+3. [2] Convert Hexadecimal number A201 to its Binary number equivalent?

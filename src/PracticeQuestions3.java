@@ -178,8 +178,9 @@ public class PracticeQuestions3 {
         for (char ch : s.toCharArray()) {
             if (Character.isLetter(ch)) {
                 int index = ch - 'A';
-                list[index]++; //list[ch-'A']++; is also ok here
+                list[index]++;
             }
+//            System.out.println(Arrays.toString(list));
         }
 
         for (int i = 0; i < list.length; i++) {
@@ -244,75 +245,44 @@ public class PracticeQuestions3 {
     }
 
     public static String getHexadecimalCharacter(int n) {
-        if (n >= 10) {
-            return (char)(n-10+'A') + "";
+        if (n >= 0 && n < 10) {
+            return Integer.toString(n);
+        } else {
+            switch (n){
+                case 10:
+                    return "A";
+                case 11:
+                    return "B";
+                case 12:
+                    return "C";
+                case 13:
+                    return "D";
+                case 14:
+                    return "E";
+                case 15:
+                    return "F";
+                default:
+                    return "X";
+            }
         }
-        return n + "";
     }
 
     public static String decimalToHexadecimal(int n) {
         String result = "";
-        while (n > 0) {
+
+        do {
             result = getHexadecimalCharacter(n%16) + result;
             n /= 16;
-        }
+        } while (n>1);
+
         return result;
     }
 
     public static void programQ8(){
         for (int i = 0; i < 10; i++) {
-            int randomNum = (int)(Math.random()*1000);
+            int randomNum = (int)(Math.random()*100);
             System.out.println(randomNum + " in hexadecimal: " + decimalToHexadecimal(randomNum) );
         }
-    }
-
-    public static boolean validateBin(String bin) {
-        boolean flag = true;
-        if (bin.length() != 16){
-            System.out.println("Number of digits of input must be 16");
-            flag = false;
-        }
-
-        for (char ch: bin.toCharArray()) {
-            if (!(ch == '0' || ch == '1')){
-                System.out.println("Each digit of input must be 0 or 1");
-                flag = false;
-            }
-        }
-
-        if (!flag)
-            return flag;
-
-        return true;
-    }
-
-    public static int binToDec(String input) {
-        int result = 0;
-
-        char valueCharacter = (input.charAt(0) == '0') ? '1' : '0';
-
-        for (char ch : input.toCharArray()) {
-            result *= 2;
-            if (ch == valueCharacter)
-                result += 1;
-        }
-
-        if (input.charAt(0) == '1')
-            result = -1 * (result+1);
-
-
-        return result;
-    }
-
-    public static void programQ9Test(){
-//        for (int i = 0; i < 10; i++) {
-//            String randomStr = "";
-//            for (int j = 0; j < 16; j++) {
-//                randomStr += (int)(Math.random()*2) + "";
-//            }
-//            System.out.println(randomStr + ", " + binToDec(randomStr));
-//        }
-        System.out.println(binToDec("1111111111111111"));
     }
 
     public static void programQ9(){
@@ -320,31 +290,25 @@ public class PracticeQuestions3 {
         System.out.println("Please enter a 16 digits binary number (signed 2's complement)");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.next();
+        int result = 0;
+        if (input.charAt(0) == '0') {
+            //It's a positive binary number
+            for (char ch : input.toCharArray()) {
+                result *= 2;
+                if (ch == '1')
+                    result += 1;
+            }
+        } else {
+            //It's a negative binary number
+            for (char ch : input.toCharArray()) {
+                result *= 2;
+                if (ch == '0')
+                    result += 1;
+            }
+            result = -1 * (result+1);
+        }
 
-        if (validateBin(input))
-            binToDec(input);
-
-
-//        if (input.charAt(0) == '0') {
-//            //It's a positive binary number
-//            for (char ch : input.toCharArray()) {
-//                result *= 2;
-//                if (ch == '1')
-//                    result += 1;
-//            }
-//        } else {
-//            //It's a negative binary number
-//            for (char ch : input.toCharArray()) {
-//                result *= 2;
-//                if (ch == '0')
-//                    result += 1;
-//            }
-//            result = -1 * (result+1);
-//        }
-
-
-
-        System.out.println(binToDec(input));
+        System.out.println(result);
 
         //0111100110010100 = 31124
         //1111100110010100 = -1644
@@ -352,15 +316,8 @@ public class PracticeQuestions3 {
 
     public static void programQ10(){
         int x = -270;
-        x = -129;
         byte y = (byte)x;
         //-270 = -128 - (127-0) - 15 => y = -14
-
-        //x-> 2's complement, -> get the rightmost 8 digits
-        //2 questions, points not much
-
-
-
         System.out.println(y);
     }
 
@@ -394,8 +351,7 @@ public class PracticeQuestions3 {
 //        programQ8();
 
         //Question 9
-//        programQ9();
-        programQ9Test();
+        programQ9();
 
         //Question 10
 //        programQ10();

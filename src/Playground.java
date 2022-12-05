@@ -6,5 +6,8 @@ public class Playground {
         x = -270;
         byte y = (byte)x;
         System.out.println(y);
+
+
+        System.out.println();
     }
 }

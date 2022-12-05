@@ -188,12 +188,31 @@ public class PracticeQuestions3 {
         }
     }
 
+    public static int findCorrespondingDigitForLettersV2(char letter) {
+        letter = Character.toUpperCase(letter);
+
+        if (letter == 'Q' || letter == 'Z')
+            return -1;
+
+        for (int i = 0, j = 0; i < 26; i++) {
+            char ch = (char)('A' + i);
+            if (ch == 'Q' || ch == 'Z')
+                continue;
+            if (letter == ch) {
+                return j / 3 + 2;
+            }
+            j++;
+        }
+        return -1;
+    }
+
     public static void programQ4() {
         Scanner input = new Scanner(System.in);
         while (true) {
             System.out.print("Please enter a letter: ");
             char letter = input.next().charAt(0);
             System.out.println("The corresponding digit on telephone keypad: " + findCorrespondingDigitForLetters(letter));
+            System.out.println("The corresponding digit on telephone keypad: " + findCorrespondingDigitForLettersV2(letter));
         }
 
     }
@@ -480,7 +499,7 @@ public class PracticeQuestions3 {
 //        programQ3();
 
         //Question 4
-//        programQ4();
+        programQ4();
 
         //Question 5
 //        countLetterOccurrenceInString("Hello World");
@@ -497,7 +516,7 @@ public class PracticeQuestions3 {
         //Question 9
 //        programQ9();
 //        programQ9Test();
-        programQ9V2Test();
+//        programQ9V2Test();
 
 
         //Question 10

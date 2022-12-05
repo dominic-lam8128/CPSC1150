@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Midterm2 {
 
@@ -36,6 +39,32 @@ public class Midterm2 {
 //        list = new int[] {18,22,30,1,5,9,17};
 //        System.out.println(rewriteProcess(list));
     }
+
+    //    Question 4
+    //    [10] Write a Java program to open an input file named "scores.txt, which
+    //    contains the scores of students. The program should calculate the average and
+    //    the highest score in the file and display the results on the computer screen.
+
+    public static void readScores() throws IOException {
+        Scanner scanner = new Scanner(new File("mt2_scores.txt"));
+        double sum = 0, max = 0;
+        int count = 0;
+
+        while (scanner.hasNext()) {
+            double score = scanner.nextDouble();
+            sum += score;
+            count++;
+            max = (score > max)? score:max;
+        }
+        scanner.close();
+        System.out.println("Average: " + sum/count +"\nHighest Score: " + max);
+    }
+
+
+
+    public static void question4() throws IOException {
+        readScores();
+    }
     
     public static int[] mergeArrays(int[] list1, int[] list2) {
         int[] list = new int[list1.length + list2.length];
@@ -66,9 +95,10 @@ public class Midterm2 {
         System.out.println(Arrays.toString(resultList));
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
 //        question1();
-        question5();
+        question4();
+//        question5();
     }
 }
 

@@ -1,11 +1,8 @@
 /**
- * Suggested solutions to CPSC1150 PracticeQuestions3
+ * Suggested solutions to CPSC1150 2022 Fall Section 3/4 PracticeQuestions3
+ * provided by Dominic Lam
+ *
  */
-
-
-
-
-
 
 
 import java.util.Arrays;
@@ -303,7 +300,7 @@ public class PracticeQuestions3 {
         do {
             result = getHexadecimalCharacter(n%16) + result;
             n /= 16;
-        } while (n>1);
+        } while (n>0);
 
         return result;
     }
@@ -316,27 +313,23 @@ public class PracticeQuestions3 {
     }
 
     public static void programQ9(){
+        //This solution adopted methods from Number Theory, UG level Mathematics.
+        //Please don't waste time to understand this solution
 
         System.out.println("Please enter a 16 digits binary number (signed 2's complement)");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.next();
         int result = 0;
-        if (input.charAt(0) == '0') {
-            //It's a positive binary number
-            for (char ch : input.toCharArray()) {
-                result *= 2;
-                if (ch == '1')
-                    result += 1;
-            }
-        } else {
-            //It's a negative binary number
-            for (char ch : input.toCharArray()) {
-                result *= 2;
-                if (ch == '0')
-                    result += 1;
-            }
-            result = -1 * (result+1);
+        char valueCharacter = (input.charAt(0) == '0') ? '1' : '0';
+
+        for (char ch : input.toCharArray()) {
+            result *= 2;
+            if (ch == valueCharacter)
+                result += 1;
         }
+
+        if (input.charAt(0) == '1')
+            result = -1 * (result+1);
 
         System.out.println(result);
 

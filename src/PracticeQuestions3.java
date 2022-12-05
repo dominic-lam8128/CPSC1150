@@ -312,14 +312,32 @@ public class PracticeQuestions3 {
         }
     }
 
-    public static void programQ9(){
+    public static boolean validateBin(String bin) {
+        boolean flag = true;
+        if (bin.length() != 16){
+            System.out.println("Number of digits of input must be 16");
+            flag = false;
+        }
+
+        for (char ch: bin.toCharArray()) {
+            if (!(ch == '0' || ch == '1')){
+                System.out.println("Each digit of input must be 0 or 1");
+                flag = false;
+            }
+        }
+
+        if (!flag)
+            return flag;
+
+        return true;
+    }
+
+    public static int twosComplementToDec(String input) {
         //This solution adopted methods from Number Theory, UG level Mathematics.
         //Please don't waste time to understand this solution
 
-        System.out.println("Please enter a 16 digits binary number (signed 2's complement)");
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.next();
         int result = 0;
+
         char valueCharacter = (input.charAt(0) == '0') ? '1' : '0';
 
         for (char ch : input.toCharArray()) {
@@ -331,10 +349,102 @@ public class PracticeQuestions3 {
         if (input.charAt(0) == '1')
             result = -1 * (result+1);
 
-        System.out.println(result);
 
-        //0111100110010100 = 31124
-        //1111100110010100 = -1644
+        return result;
+    }
+
+
+    public static void programQ9Test(){
+        for (int i = 0; i < 10; i++) {
+            String randomStr = "";
+            for (int j = 0; j < 16; j++) {
+                randomStr += (int)(Math.random()*2) + "";
+            }
+            System.out.println(randomStr + ", " + binToDec(randomStr));
+        }
+//        System.out.println(twosComplementToDec("1111111111111111"));
+    }
+
+    public static void programQ9V2Test() {
+
+        for (int i = 0; i < 10; i++) {
+            String randomStr = "";
+            for (int j = 0; j < 16; j++) {
+                randomStr += (int)(Math.random()*2) + "";
+            }
+            System.out.println(randomStr + ", " + twosComplementToDecV2(randomStr));
+        }
+
+    }
+
+    public static String flipBinary(String bin) {
+        //flip every digit in bin from 1 -> 0 or 0 -> 1
+        String result = "";
+        for (String digit:bin.split("")) {
+            result += (digit.equals("0"))? "1" : "0";
+        }
+        return result;
+    }
+
+    public static String addOne(String bin) {
+        String result = "";
+        int index = bin.length()-1;
+        for (;index>=0;index--) {
+            if (bin.charAt(index) == '1'){
+                result = '0' + result;
+            } else {
+                result = '1' + result;
+                break;
+            }
+        }
+        result = bin.substring(0,index) + result;
+        return result;
+    }
+
+    public static int binToDec(String bin) {
+        int result = 0;
+        for (int i = 0; i < bin.length(); i++) {
+            result += ((bin.charAt(i) - '0')) * (int)Math.pow(2,bin.length()-i-1);
+        }
+        return result;
+    }
+
+
+    public static int twosComplementToDecV2(String input) {
+        //This solution's approach is provided by Prof Hengameh Hamavand.
+
+        String result = "";
+
+        //So the input is ok, now we check if it's negative
+        if (input.charAt(0) == '1') {
+            //It's negative, we need to flip it
+            result = flipBinary(input);
+            //Then add 1 to it
+            result = addOne(result);
+        } else
+            result = input;
+
+        //Convert it from binary to decimal
+        int dec = binToDec(result);
+
+        if (input.charAt(0) == '1')
+            dec *= -1;
+
+        return dec;
+    }
+
+
+    public static void programQ9(){
+        System.out.println("Please enter a 16 digits binary number (signed 2's complement)");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.next();
+        String result = "";
+        if (!validateBin(input)) {
+            System.out.println("Wrong input!");
+            return;
+        }
+
+        System.out.println(twosComplementToDecV2(input));
     }
 
     public static void programQ10(){
@@ -386,11 +496,18 @@ public class PracticeQuestions3 {
 
         //Question 9
 //        programQ9();
+//        programQ9Test();
+        programQ9V2Test();
+
 
         //Question 10
 //        programQ10();
 
-        traceRecursion();
+//        traceRecursion();
+
+//        System.out.println(binToDec("1011"));
+
+
     }
 
 }

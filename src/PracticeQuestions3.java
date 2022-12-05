@@ -351,6 +351,17 @@ public class PracticeQuestions3 {
         System.out.println(y);
     }
 
+    public static int f2(int n, int result) {
+        if (n == 0)
+            return 0;
+        else
+            return f2(n - 1, n + result);
+    }
+
+    public static void traceRecursion(){
+        System.out.println(f2(2,0));
+    }
+
     public static void main(String[] args) {
         //Please uncomment each section to see the demonstration of each question.
 
@@ -381,10 +392,12 @@ public class PracticeQuestions3 {
 //        programQ8();
 
         //Question 9
-        programQ9();
+//        programQ9();
 
         //Question 10
 //        programQ10();
+
+        traceRecursion();
     }
 
 }

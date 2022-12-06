@@ -17,9 +17,9 @@ public class FinalPractices {
         System.out.println(f2(2,0));
     }
 
-    public static void convertIntToByteManually(int numberOfPractices)  throws IOException {
+    public static void generateByteEx(int numberOfPractices)  throws IOException {
 
-        PrintWriter pw = new PrintWriter(new File("Number_System_Answers.txt"));
+        PrintWriter pw = new PrintWriter(new File("Number_System_Answers_set2.txt"));
         System.out.println("Consider the following code");
         System.out.println("\t\tint x = n");
         System.out.println("\t\tbyte y = (byte)x");
@@ -34,12 +34,41 @@ public class FinalPractices {
         }
 
         pw.close();
-
-
     }
 
+    public static void byteToIntTest() {
+        int numberOfTest = 1000;
+        boolean boo = true;
+        for (int i = 0; i < numberOfTest; i++) {
+            int randomNumber = (int)(Math.random()*2049-1028);
+//            System.out.println(randomNumber);
+            if ((byte)randomNumber != intToByte(randomNumber)) {
+                boo = false;
+                System.out.println(i+1 + ", " + randomNumber + ", " + (byte)randomNumber + ", " + intToByte(randomNumber));
+            }
+        }
+
+        if (boo)
+            System.out.println("It seems correct!");
+    }
+
+    public static int intToByte(int n) {
+        if (n < -128)
+            return intToByte(n+256);
+        if (n > 127)
+            return intToByte(n-256);
+        return n;
+    }
+
+
+
+
+
+
+
     public static void main(String[] args) throws IOException{
-        convertIntToByteManually(10);
+//        generateByteEx(10);
+        byteToIntTest();
     }
 
 }

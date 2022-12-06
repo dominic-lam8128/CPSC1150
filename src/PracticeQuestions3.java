@@ -9,6 +9,21 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class PracticeQuestions3 {
+
+    /**
+     * Separator of Question 1
+     * ============================================================================================================
+     */
+
+    /**
+     * Question 1
+     * Write an algorithm to decide if a given positive integer can be written as the sum of two perfect squares.
+     * For example, the number 58 is the sum of 9 and 49, both of which are square, but the number 14 cannot be
+     * written as such a sum.
+     *
+     * @param n a number to be checked if it's a sum of two perfect squares
+     * @return true or false if n is a sum of two perfect squares
+     */
     public static boolean isSumOfTwoSquares(int n) {
         for (int i = 1; i <= n/2 ; i++) {
             if (isSquare((n-i*i)) && i*i >= 1 && (n-i*i) >= 1) {
@@ -38,6 +53,11 @@ public class PracticeQuestions3 {
         }
     }
 
+    /**
+     * Separator of Question 2
+     * ============================================================================================================
+     */
+
     public static int nThFibonacciNumber(int n) {
         if (n <= 1) {
             return n;
@@ -58,6 +78,27 @@ public class PracticeQuestions3 {
         return fibonacciList;
     }
 
+
+    public static void findOutTwosPowerInAnArray(int[] list){
+        for (int n : list) {
+            if (isTwosPower(n))
+                System.out.println(n + " is a two's power");
+        }
+    }
+
+    public static boolean isTwosPower(int n) {
+        while (n > 1) {
+            if (n%2 != 0)
+                return false;
+            n /= 2;
+        }
+        return true;
+    }
+
+
+
+
+
     public static boolean isPalindrome(String s) {
         return isPalindrome(s, 0, s.length()-1);
     }
@@ -73,21 +114,12 @@ public class PracticeQuestions3 {
         }
     }
 
-    public static boolean isTwosPower(int n) {
-        while (n > 1) {
-            if (n%2 != 0)
-                return false;
-            n /= 2;
-        }
-        return true;
-    }
 
-    public static void findOutTwosPowerInAnArray(int[] list){
-        for (int n : list) {
-            if (isTwosPower(n))
-                System.out.println(n + " is a two's power");
-        }
-    }
+
+    /**
+     * Separator of Question 3
+     * ============================================================================================================
+     */
 
     public static void programQ3() {
         System.out.println("This program finds the largest increase between the integers you entered.");
@@ -97,6 +129,7 @@ public class PracticeQuestions3 {
         boolean runProgram = true;
         //To take the first integer.
         System.out.print("Please enter a positive integer: ");
+
         previousNum = input.nextInt();
         currentNum = previousNum;
         if (previousNum < 0)
@@ -147,6 +180,12 @@ public class PracticeQuestions3 {
         }
         System.out.println("Largest increase between the integers you entered: " + maxIncrease);
     }
+
+    /**
+     * Separator of Question 4
+     * ============================================================================================================
+     */
+
 
     public static int findCorrespondingDigitForLetters(char letter) {
         letter = Character.toUpperCase(letter);
@@ -217,6 +256,12 @@ public class PracticeQuestions3 {
 
     }
 
+
+    /**
+     * Separator of Question 5
+     * ============================================================================================================
+     */
+
     public static void countLetterOccurrenceInString(String s) {
         int[] list = new int[26];
         s = s.toUpperCase();
@@ -235,6 +280,12 @@ public class PracticeQuestions3 {
             }
         }
     }
+
+    /**
+     * Separator of Question 6
+     * ============================================================================================================
+     */
+
 
     public static int bitsToRepresent(int n) {
         /** From 0 to 32767
@@ -268,6 +319,11 @@ public class PracticeQuestions3 {
 
     }
 
+    /**
+     * Separator of Question 7
+     * ============================================================================================================
+     */
+
     public static void displayOrdinalFormsForNumbers(int[] list) {
         for (int num : list) {
 
@@ -290,36 +346,43 @@ public class PracticeQuestions3 {
         }
     }
 
+    /**
+     * Separator of Question 8
+     * ============================================================================================================
+     */
+
+
     public static String getHexadecimalCharacter(int n) {
         if (n >= 0 && n < 10) {
             return Integer.toString(n);
         } else {
-            switch (n){
-                case 10:
-                    return "A";
-                case 11:
-                    return "B";
-                case 12:
-                    return "C";
-                case 13:
-                    return "D";
-                case 14:
-                    return "E";
-                case 15:
-                    return "F";
-                default:
-                    return "X";
-            }
+            return (char)(n - 10 + 'A') + "";
+//            switch (n){
+//                case 10:
+//                    return "A";
+//                case 11:
+//                    return "B";
+//                case 12:
+//                    return "C";
+//                case 13:
+//                    return "D";
+//                case 14:
+//                    return "E";
+//                case 15:
+//                    return "F";
+//                default:
+//                    return "X";
+//            }
         }
     }
 
     public static String decimalToHexadecimal(int n) {
         String result = "";
 
-        do {
+        while (n>0){
             result = getHexadecimalCharacter(n%16) + result;
             n /= 16;
-        } while (n>0);
+        }
 
         return result;
     }
@@ -330,6 +393,14 @@ public class PracticeQuestions3 {
             System.out.println(randomNum + " in hexadecimal: " + decimalToHexadecimal(randomNum) );
         }
     }
+
+
+    /**
+     * Separator of Question 9
+     * ============================================================================================================
+     */
+
+
 
     public static boolean validateBin(String bin) {
         boolean flag = true;
@@ -384,17 +455,7 @@ public class PracticeQuestions3 {
 //        System.out.println(twosComplementToDec("1111111111111111"));
     }
 
-    public static void programQ9V2Test() {
 
-        for (int i = 0; i < 10; i++) {
-            String randomStr = "";
-            for (int j = 0; j < 16; j++) {
-                randomStr += (int)(Math.random()*2) + "";
-            }
-            System.out.println(randomStr + ", " + twosComplementToDecV2(randomStr));
-        }
-
-    }
 
     public static String flipBinary(String bin) {
         //flip every digit in bin from 1 -> 0 or 0 -> 1
@@ -432,6 +493,7 @@ public class PracticeQuestions3 {
     public static int twosComplementToDecV2(String input) {
         //This solution's approach is provided by Prof Hengameh Hamavand.
 
+
         String result = "";
 
         //So the input is ok, now we check if it's negative
@@ -452,6 +514,19 @@ public class PracticeQuestions3 {
         return dec;
     }
 
+    public static void programQ9V2Test() {
+
+        for (int i = 0; i < 10; i++) {
+            String randomStr = "";
+            for (int j = 0; j < 16; j++) {
+                randomStr += (int)(Math.random()*2) + "";
+            }
+            System.out.println(randomStr + ", " + twosComplementToDecV2(randomStr));
+        }
+
+    }
+
+
 
     public static void programQ9(){
         System.out.println("Please enter a 16 digits binary number (signed 2's complement)");
@@ -466,6 +541,13 @@ public class PracticeQuestions3 {
         System.out.println(twosComplementToDecV2(input));
     }
 
+
+    /**
+     * Separator of Question 10
+     * ============================================================================================================
+     */
+
+
     public static void programQ10(){
         int x = -270;
         byte y = (byte)x;
@@ -473,16 +555,6 @@ public class PracticeQuestions3 {
         System.out.println(y);
     }
 
-    public static int f2(int n, int result) {
-        if (n == 0)
-            return 0;
-        else
-            return f2(n - 1, n + result);
-    }
-
-    public static void traceRecursion(){
-        System.out.println(f2(2,0));
-    }
 
     public static void main(String[] args) {
         //Please uncomment each section to see the demonstration of each question.
@@ -499,7 +571,7 @@ public class PracticeQuestions3 {
 //        programQ3();
 
         //Question 4
-        programQ4();
+//        programQ4();
 
         //Question 5
 //        countLetterOccurrenceInString("Hello World");
@@ -511,7 +583,7 @@ public class PracticeQuestions3 {
 //        displayOrdinalFormsForNumbers(new int[] {21, 345, 42, 83, 789, 11,101,111,312});
 
         //Question 8
-//        programQ8();
+        programQ8();
 
         //Question 9
 //        programQ9();

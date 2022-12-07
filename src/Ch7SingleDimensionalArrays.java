@@ -198,6 +198,13 @@ public class Ch7SingleDimensionalArrays {
         System.out.printf("The list is %s sorted\n",element);
     }
 
+
+    /**
+     * Separator for Question 7.21
+     * ========================================================
+     */
+
+
     public static String randomPath(int length) {
         String result = "";
         for (int i = 0; i < length; i++) {
@@ -241,6 +248,115 @@ public class Ch7SingleDimensionalArrays {
     }
 
 
+    /**
+     * Separator for Question 7.22
+     * ========================================================
+     */
+
+
+
+    /**
+     * Separator for Question 7.31
+     * ========================================================
+     */
+
+    public static int[] merge(int[] list1, int[] list2) {
+        int[] resultList = new int [list1.length + list2.length];
+
+        int index1 = 0, index2 = 0;
+
+        int tempi = 0, tempIndex = 0;
+        int[] tempList;
+
+
+        for (int i = 0; i < resultList.length; i++) {
+
+            if (list1[index1] < list2[index2]) {
+                resultList[i] = list1[index1];
+                index1++;
+                if (index1 >= list1.length) {
+                    tempi = i+1;
+                    tempIndex = index2;
+                    tempList = list2;
+
+                    for (int j = i+1; j < resultList.length; j++,index2++) {
+                        resultList[j] = list2[index2];
+                    }
+                    break;
+                }
+            } else {
+                resultList[i] = list2[index2];
+                index2++;
+                if (index2 >= list2.length) {
+                    tempi = i+1;
+                    tempIndex = index1;
+                    tempList = list1;
+
+                    for (int j = i+1; j < resultList.length; j++,index1++) {
+                        resultList[j] = list1[index1];
+                    }
+                    break;
+                }
+            }
+        }
+
+        return resultList;
+    }
+
+    public static void question31() {
+        int[] list = merge(new int[] {1,5,16,111}, new int[] {2,4,5,6});
+        int[] list1 = new int[] {1,5,16,111,2,4,5,6};
+        Arrays.sort(list1);
+
+
+
+        System.out.println(Arrays.toString(list1));
+    }
+
+
+    /**
+     * Separator for Question 7.32
+     * ========================================================
+     */
+
+    public static void swapListElement(int i, int j, int[] list) {
+        int temp = list[i];
+        list[i] = list[j];
+        list[j] = temp;
+    }
+
+    public static int partition(int[] list) {
+        int first = 1;
+        int last = list.length-1;
+        while (first <= last) {
+
+            while (list[0] >= list[first])
+                first++;
+            while (list[0] < list[last])
+                last--;
+            System.out.println(first + ", " + last + ", " + Arrays.toString(list));
+
+            if (last > first)
+                swapListElement(first, last, list);
+        }
+
+        swapListElement(0, last, list);
+        return last;
+    }
+
+    public static void question32() {
+        int[] list = new int[] {10,1,5,16,61,9,11,1};
+        System.out.println(Arrays.toString(list));
+        int pivotIndex = partition(list);
+        System.out.println(pivotIndex + ", " + Arrays.toString(list));
+    }
+
+
+
+
+
+
+
 
     public static void main(String[] args) {
 //        testPrime(20);
@@ -252,7 +368,10 @@ public class Ch7SingleDimensionalArrays {
 //        question17();
 //        question19();
 
-        question21();
+//        question21();
+//        question31();
+        question32();
+
 
     }
 }

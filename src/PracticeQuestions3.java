@@ -26,7 +26,7 @@ public class PracticeQuestions3 {
      */
     public static boolean isSumOfTwoSquares(int n) {
         for (int i = 1; i <= n/2 ; i++) {
-            if (isSquare((n-i*i)) && i*i >= 1 && (n-i*i) >= 1) {
+            if (isSquare((n-i*i)) && (n-i*i) >= 1) {
                 System.out.println(n + " = " + i*i + " + " + (n-i*i));
                 return true;
             }
@@ -78,14 +78,6 @@ public class PracticeQuestions3 {
         return fibonacciList;
     }
 
-
-    public static void findOutTwosPowerInAnArray(int[] list){
-        for (int n : list) {
-            if (isTwosPower(n))
-                System.out.println(n + " is a two's power");
-        }
-    }
-
     public static boolean isTwosPower(int n) {
         while (n > 1) {
             if (n%2 != 0)
@@ -95,7 +87,12 @@ public class PracticeQuestions3 {
         return true;
     }
 
-
+    public static void findOutTwosPowerInAnArray(int[] list){
+        for (int n : list) {
+            if (isTwosPower(n))
+                System.out.println(n + " is a two's power");
+        }
+    }
 
 
 
@@ -245,6 +242,15 @@ public class PracticeQuestions3 {
         return -1;
     }
 
+    public static int findCorrespondingDigitForLettersV3(char letter) {
+        letter = Character.toUpperCase(letter);
+        if (letter == 'Q' || letter == 'Z')
+            return -1;
+        int index = (letter >= 'R') ? letter - 'A' - 1 : letter - 'A';
+        return index / 3 + 2;
+    }
+
+
     public static void programQ4() {
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -252,6 +258,7 @@ public class PracticeQuestions3 {
             char letter = input.next().charAt(0);
             System.out.println("The corresponding digit on telephone keypad: " + findCorrespondingDigitForLetters(letter));
             System.out.println("The corresponding digit on telephone keypad: " + findCorrespondingDigitForLettersV2(letter));
+            System.out.println("The corresponding digit on telephone keypad: " + findCorrespondingDigitForLettersV3(letter));
         }
 
     }
@@ -286,21 +293,23 @@ public class PracticeQuestions3 {
      * ============================================================================================================
      */
 
-
-    public static int bitsToRepresent(int n) {
+    public static int bitsToRepresentV2(int n) {
         /** From 0 to 32767
          * 0-1 -> 1 bit
          * 2-3 -> 2 bits
          * 4-7 -> 3 bits
          * 8-15 -> 4 bits
          */
+
+        if (n == 0)
+            return 1;
+
         int count = 0;
-        while (Math.pow(2,count+1) < n)
+        while (n > 0) {
+            n /= 2;
             count++;
-
-        return count+1;
-
-
+        }
+        return count;
     }
 
     public static void programQ6() {
@@ -313,8 +322,10 @@ public class PracticeQuestions3 {
             if (n < 0)
                 break;
 
-            if (n <= 32767)
-                System.out.println(bitsToRepresent(n) + " bit(s) is/are required to represent " + n + ".");
+            if (n <= 32767) {
+                System.out.println(bitsToRepresentV2(n) + " bit(s) is/are required to represent " + n + ".");
+            }
+
         }
 
     }
@@ -324,27 +335,53 @@ public class PracticeQuestions3 {
      * ============================================================================================================
      */
 
-    public static void displayOrdinalFormsForNumbers(int[] list) {
-        for (int num : list) {
+    public static String getOrdinalForm(int num) {
+        if (num%100 <= 13 && num%100 >= 11) {
+            return num + "th";
+        }
 
-            if (num%100 <= 13 && num%100 >= 11) {
-                System.out.print(num + "th ");
-            } else {
-                String suffix = "th ";
-                int lastDigit = num%10;
-                switch (lastDigit) {
-                    case 1:
-                        suffix = "st ";
-                    case 2:
-                        suffix = "nd ";
-                    case 3:
-                        suffix = "rd ";
-                }
-                System.out.print(num + suffix);
+        switch ( num%10 ) {
+            case 1:
+                return num + "st";
+            case 2:
+                return num + "nd";
+            case 3:
+                return num + "rd";
+            default:
+                return num + "th";
 
-            }
         }
     }
+
+
+    public static void programQ7() {
+        int[] list = new int[] {21, 345, 42, 83, 789, 11,101,111,312};
+        for (int num: list)
+            System.out.print(getOrdinalForm(num) + " ");
+        System.out.println();
+    }
+
+//    public static void displayOrdinalFormsForNumbers(int[] list) {
+//        for (int num : list) {
+//
+//            if (num%100 <= 13 && num%100 >= 11) {
+//                System.out.print(num + "th ");
+//            } else {
+//                String suffix = "th ";
+//                int lastDigit = num%10;
+//                switch (lastDigit) {
+//                    case 1:
+//                        suffix = "st ";
+//                    case 2:
+//                        suffix = "nd ";
+//                    case 3:
+//                        suffix = "rd ";
+//                }
+//                System.out.print(num + suffix);
+//
+//            }
+//        }
+//    }
 
     /**
      * Separator of Question 8
@@ -354,25 +391,9 @@ public class PracticeQuestions3 {
 
     public static String getHexadecimalCharacter(int n) {
         if (n >= 0 && n < 10) {
-            return Integer.toString(n);
+            return n + "";
         } else {
             return (char)(n - 10 + 'A') + "";
-//            switch (n){
-//                case 10:
-//                    return "A";
-//                case 11:
-//                    return "B";
-//                case 12:
-//                    return "C";
-//                case 13:
-//                    return "D";
-//                case 14:
-//                    return "E";
-//                case 15:
-//                    return "F";
-//                default:
-//                    return "X";
-//            }
         }
     }
 
@@ -581,9 +602,10 @@ public class PracticeQuestions3 {
 
         //Question 7
 //        displayOrdinalFormsForNumbers(new int[] {21, 345, 42, 83, 789, 11,101,111,312});
+        programQ7();
 
         //Question 8
-        programQ8();
+//        programQ8();
 
         //Question 9
 //        programQ9();
